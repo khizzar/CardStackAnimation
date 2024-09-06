@@ -12,6 +12,10 @@ import android.view.ViewGroup
  * Date: 22/07/2024
  **/
 
+
+/**
+ * This object handles the animation logic for the views
+ * **/
 object CardsAnimationUtils {
 
     fun animateViews(
@@ -24,6 +28,7 @@ object CardsAnimationUtils {
         if (clickedIndex == -1) return // Clicked view not found in the list
         val moreThanOneViewOnTop = views.indexOf(clickedView) > 1
 
+        // create the list of the x,y coordinates of the view list for later use
         val viewXYList = arrayListOf<Pair<Float, Float>>().apply {
             views.forEach {
                 val viewLocation = IntArray(2)
@@ -56,18 +61,18 @@ object CardsAnimationUtils {
         animations.add(moveUp)
 
         animatorSet.playTogether(animations)
-        animatorSet.duration = 1000 // Duration in milliseconds
+        animatorSet.duration = 500 // Duration in milliseconds
 
         animatorSet.addListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {}
 
             override fun onAnimationEnd(animation: Animator) {
-
+                // check if the clicked view has more than 1 view in front then run iterations other wise not
                 if (moreThanOneViewOnTop) {
                     var tempView = clickedView
                     for (i in views.indexOf(clickedView) - 1 downTo 0) {
                         val viewToMoveBack = views[i]
-                        moveViewToBackSingle(
+                        moveViewToBack(
                             viewToMoveBack,
                             viewXYList[views.indexOf(tempView)],
                             viewXYList[i],
@@ -85,7 +90,7 @@ object CardsAnimationUtils {
                         }
                     }
                 } else {
-                    moveViewToBackSingle(
+                    moveViewToBack(
                         views[views.indexOf(clickedView) - 1],
                         viewXYList[views.indexOf(clickedView)],
                         viewXYList[views.indexOf(clickedView) - 1],
@@ -107,7 +112,7 @@ object CardsAnimationUtils {
         animatorSet.start()
     }
 
-    private fun moveViewToBackSingle(
+    private fun moveViewToBack(
         viewToMoveBack: View,
         clickedViewCoordinates: Pair<Float, Float>,
         viewToMoveBackOrgCoordinates: Pair<Float, Float>,
@@ -152,7 +157,7 @@ object CardsAnimationUtils {
         }
 
         animatorSet.playTogether(moveUp, widthAnimator, marginAnimator)
-        animatorSet.duration = 1000
+        animatorSet.duration = 500
         animatorSet.start()
     }
 
@@ -200,7 +205,7 @@ object CardsAnimationUtils {
         )
 
         animatorSet.playTogether(moveFront, widthAnimator, marginAnimator)
-        animatorSet.duration = 1000 // Duration in milliseconds
+        animatorSet.duration = 500 // Duration in milliseconds
 
         // Handle animation end action
         animatorSet.addListener(object : Animator.AnimatorListener {
@@ -216,7 +221,7 @@ object CardsAnimationUtils {
         })
 
         animatorSet.start()
-        clickedView.bringToFront()
+        clickedView.bringToFront() // this will bring the clicked view to the front to the list and set its z-index to 1
         clickedView.z = 1f
     }
 

@@ -7,6 +7,10 @@ import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import com.shyk.cardsstackexample.databinding.FrameActivityBinding
 
+/**
+ * Created By: Khizzar
+ * Date: 22/07/2024
+ **/
 class FrameActivity : AppCompatActivity() {
 
     private lateinit var binding: FrameActivityBinding
