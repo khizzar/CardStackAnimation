@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:id="@+id/llParent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AnimationActivity2">
+
+        <View
+            android:id="@+id/card3"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginLeft="90dp"
+            android:layout_marginRight="90dp"
+            android:layout_marginBottom="80dp"
+            android:background="@color/purple_700"
+            android:tag="3"
+            android:layout_marginTop="140dp" />
+
+        <View
+            android:id="@+id/card2"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="180dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:background="@color/purple_500"
+            android:tag="2"/>
+
+        <View
+            android:id="@+id/card1"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/purple_200"
+            android:layout_marginTop="220dp"
+            android:tag="1"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" />
+
+    </FrameLayout>
+
+</layout>
